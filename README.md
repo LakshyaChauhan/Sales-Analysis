@@ -9,6 +9,19 @@ In this project, we analyze sales data for a company over the span of 12 months.
 1. **Merging Monthly Sales Data**
    - Combined all 12 months of sales data into a single file using `pandas.concat`.
    - Ensured the merged data is clean and complete.
+   ```python
+   files  =  [file for file in os.listdir('analysis/Sales_Data')]
+   all_months_data = pd.DataFrame()
+   for file in files:
+    df = pd.read_csv('./analysis/Sales_Data/'+file)
+    all_months_data = pd.concat([all_months_data ,df])
+   ```
+   <p align = "center">
+      <img src = "https://github.com/LakshyaChauhan/Sales-Analysis/blob/main/assets/all_month.png" ></img>
+<!--       <img src = "" width="45%"></img> -->
+   </p>
+
+all_months_data.head()
 
 2. **Cleaning the Data**
    * Removed rows with missing values using `dropna`.
@@ -22,3 +35,6 @@ In this project, we analyze sales data for a company over the span of 12 months.
 4. **Visualization**
    + Plotted the monthly sales data using `matplotlib` to identify trends.
    + Created bar charts to visualize the best month for sales.
+
+## Result
+![Result]()
