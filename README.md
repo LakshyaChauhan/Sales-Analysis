@@ -17,7 +17,7 @@ In this project, we analyze sales data for a company over the span of 12 months.
     all_months_data = pd.concat([all_months_data ,df])
    ```
    <p align = "center">
-      <img src = "https://github.com/LakshyaChauhan/Sales-Analysis/blob/main/assets/all_month.png" width="45%"></img>
+      <img src = "https://github.com/LakshyaChauhan/Sales-Analysis/blob/main/assets/all_month.png" ></img>
 <!--       <img src = "" width="45%"></img> -->
    </p>
 
