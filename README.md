@@ -15,26 +15,52 @@ In this project, we analyze sales data for a company over the span of 12 months.
    for file in files:
     df = pd.read_csv('./analysis/Sales_Data/'+file)
     all_months_data = pd.concat([all_months_data ,df])
+    all_months_data.head()
    ```
    <p align = "center">
       <img src = "https://github.com/LakshyaChauhan/Sales-Analysis/blob/main/assets/all_month.png" ></img>
-<!--       <img src = "" width="45%"></img> -->
    </p>
 
-all_months_data.head()
 
 2. **Cleaning the Data**
    * Removed rows with missing values using `dropna`.
    * Filtered out invalid rows based on conditions like incorrect 'Order Date'.
    * Converted necessary columns (like 'Month') to numeric types for analysis.
+   ```python
+   nan_df = all_months_data[all_months_data.isna().any(axis=1)]
+   nan_df.head()
+ 
+   all_months_data = all_months_data.dropna(how='all')
+   all_months_data
 
+   all_months_data.loc[:,'Month'] = all_months_data['Order Date'].str[0:2]
+
+   all_months_data = all_months_data[all_months_data['Month'].str[0:2] != 'Or']
+   all_months_data['Month'] = pd.to_numeric(all_months_data['Month'])
+   all_months_data.head()
+
+   ```
+   
 3. **Sales Analysis**
    - Calculated total sales by adding a new column 'Sales' (`Quantity Ordered` × `Price Each`).
    - Grouped data by month and calculated total monthly sales.
+   ```python
+   all_months_data['Price Each'] = pd.to_numeric(all_months_data['Price Each'])
+   all_months_data['Quantity Ordered'] = pd.to_numeric(all_months_data['Quantity Ordered'])
+   all_months_data.head(50)
+   ```
 
 4. **Visualization**
    + Plotted the monthly sales data using `matplotlib` to identify trends.
    + Created bar charts to visualize the best month for sales.
+   ```python
+   months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
+   plt.bar(months,results['Sales'])
+   plt.xticks(months)
+   plt.ylabel('Sales in USD($)')
+   plt.xlabel('Months')
+   plt.show()
+   ```
+   <img src = "https://github.com/LakshyaChauhan/Sales-Analysis/blob/main/assets/ans1.png">
 
-## Result
-![Result]()
+
